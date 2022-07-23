@@ -87,10 +87,14 @@ namespace WebApiAutores.Controllers
 
                 var newUser = new User
                 {
-                UserName = user.UserName,
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(user.Password)),
-                PasswordSalt = hmac.Key,
-                UserTypeId = user.UserTypeId
+                    Name = user.Name,
+                    LastName = user.LastName,
+                    UserName = user.UserName,
+                    Dni = user.Dni,
+                    PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(user.Password)),
+                    PasswordSalt = hmac.Key,
+                    UserTypeId = user.UserTypeId,
+                    IsActive = user.isActive,
                 };
 
                 _context.Users.Add(newUser);
