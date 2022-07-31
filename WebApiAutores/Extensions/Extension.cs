@@ -50,6 +50,26 @@ namespace WebApiAutores.Extensions
         }
 
 
+        public static CourseDTO MapToCourseForListDto(this Course course)
+        {
+            if (course != null)
+            {
+                return new CourseDTO
+                {
+                    // Id = course.Id,
+                    Name = course.Name,
+                    Description = course.Description,
+                    beginDate = course.beginDate,
+                    endDate = course.endDate
+
+                };
+            }
+
+            return null;
+        }
+
+
+
 
 
 

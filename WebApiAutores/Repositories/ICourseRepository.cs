@@ -7,5 +7,10 @@ namespace WebApiAutores.Repositories
 
         public void AddCourse(Course course);
 
+        public Task<IEnumerable<Course>> GetAllCourses();
+
+        public Task<IEnumerable<Course>> GetCoursesByName(string Name);
+
+
     }
 }

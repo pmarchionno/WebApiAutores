@@ -32,6 +32,19 @@ namespace WebApiAutores.Repositories
             }
         }
 
+        public async Task<IEnumerable<Course>> GetAllCourses()
+        {
+            return await _context.Courses.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Course>> GetCoursesByName(string Name)
+
+        {
+            IQueryable<Course> courses = _context.Courses;
+
+            return await courses.Where(c => c.Name.Contains(Name)).ToListAsync();
+        }
+
 
     }
 }

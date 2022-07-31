@@ -35,5 +35,53 @@ namespace WebApiAutores.Controllers
 
             return Ok(course);
         }
+
+        [HttpGet("{Search}")]
+        public async Task<ActionResult<IEnumerable<CourseDTO>>> GetCoursesByName(string Name)
+        {
+            try
+            {
+                var coursesResult = await _courseService.GetCoursesByName(Name);
+
+                if (coursesResult.Any())
+                {
+
+                    return Ok(coursesResult);
+                }
+                return NotFound();
+
+
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    " Error retrieving data from dtabase ");
+
+            }
+
+
+
+
+        }
+
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<CourseDTO>>> GetAllCourses()
+        {
+            var courses = await _courseService.GetAllCourses();
+            if (courses == null)
+            {
+                return NotFound();
+            }
+            return Ok(courses);
+        }
+
+        //courseRepository
+
+
+      
+
+
     }
 }

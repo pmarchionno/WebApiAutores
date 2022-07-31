@@ -6,6 +6,10 @@ namespace WebApiAutores.Services
     {
         public void AddCourse(CourseCreacionDTO course); //AddCourse
 
+        public Task<IEnumerable<CourseDTO>> GetAllCourses();
+
+        public Task<IEnumerable<CourseDTO>> GetCoursesByName(string Name);
+
 
 
 

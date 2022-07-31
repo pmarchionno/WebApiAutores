@@ -41,6 +41,43 @@ namespace WebApiAutores.Services
             }
         }
 
+        public async Task<IEnumerable<CourseDTO>> GetAllCourses()
+        {
+            var courses = await _courseRepository.GetAllCourses();
+            //return courses;
+            var returnCourses = courses.Select(x => x.MapToCourseForListDto());
+            return (IEnumerable<CourseDTO>)returnCourses;
+            //var petsToReturn = _mapper.Map<IEnumerable<PetDTO>>(pets);
+            //return petsToReturn;
+        }
+
+        public async Task<IEnumerable<CourseDTO>> GetCoursesByName(string Name)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(Name))
+                {
+                    var courses = await _courseRepository.GetCoursesByName(Name);
+
+                    return courses.Select(x => x.MapToCourseForListDto());
+
+                }
+
+                return null;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+
+
+
+
+        }
+
+
 
     }
 }
