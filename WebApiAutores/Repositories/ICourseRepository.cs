@@ -11,6 +11,10 @@ namespace WebApiAutores.Repositories
 
         public Task<IEnumerable<Course>> GetCoursesByName(string Name);
 
+        public Course GetCourseById(int id);
+
+        public  Course   EditCourse(Course course);
+
 
     }
 }

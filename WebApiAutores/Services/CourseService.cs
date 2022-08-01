@@ -1,5 +1,6 @@
 ﻿using WebApiAutores.DTOS;
 using WebApiAutores.Entidades;
+using WebApiAutores.Extensions;
 using WebApiAutores.Repositories;
 
 namespace WebApiAutores.Services
@@ -77,7 +78,62 @@ namespace WebApiAutores.Services
 
         }
 
+        public  CourseDTO GetCourseById(int id)
+        {
+            try
+            {
+                var course =  _courseRepository.GetCourseById(id);
+
+                if (course == null)
+                {
+                    return null;
+                }
+
+                return course.MapToCourseForListDto();
 
 
+
+            }
+            catch(Exception ex)
+            {
+
+                throw ex;
+
+            }
+           
+        }
+
+        public Course EditCourse( int Id , CourseDTO coursedto)
+        {
+            try
+            {
+                var oldCourse = _courseRepository.GetCourseById(Id);
+                if (oldCourse != null)
+                {
+                    oldCourse.Name = coursedto.Name;
+                    oldCourse.Description = coursedto.Description;
+                    oldCourse.beginDate = coursedto.beginDate;
+                    oldCourse.endDate = coursedto.endDate;
+                  
+                    
+                   
+                        return _courseRepository.EditCourse(oldCourse);
+                   
+                    
+                    
+                       
+                    
+                }
+                return null;
+
+
+            }
+            catch ( Exception ex)
+            {
+                throw ex;
+
+            }
+
+        }
     }
 }

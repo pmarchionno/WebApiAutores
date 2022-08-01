@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebApiAutores.DTOS;
 using WebApiAutores.Entidades;
 using WebApiAutores.Services;
@@ -77,10 +78,70 @@ namespace WebApiAutores.Controllers
             return Ok(courses);
         }
 
-        //courseRepository
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<CourseDTO>> GetCourseById(int id)
+        {
+           
+            try
+            {
+
+                var course =  _courseService.GetCourseById(id);
+
+                if (course == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(course);
 
 
-      
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    " Error retrieving data from dtabase ");
+
+            }
+
+
+
+
+
+
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditCourse(int id, CourseDTO course)
+        {
+            //if (id != pet.ID)
+            //{
+            //    return BadRequest();
+            //}
+
+            try
+            {
+                _courseService.EditCourse(id, course);
+
+                var courseToreturn = _courseService.GetCourseById(id);
+
+                return Ok(courseToreturn);
+
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return NoContent();
+        }
+
+
+
 
 
     }

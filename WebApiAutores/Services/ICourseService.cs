@@ -1,4 +1,5 @@
 ﻿using WebApiAutores.DTOS;
+using WebApiAutores.Entidades;
 
 namespace WebApiAutores.Services
 {
@@ -9,6 +10,12 @@ namespace WebApiAutores.Services
         public Task<IEnumerable<CourseDTO>> GetAllCourses();
 
         public Task<IEnumerable<CourseDTO>> GetCoursesByName(string Name);
+
+        public CourseDTO GetCourseById(int Id);
+
+      
+
+        public Course EditCourse(int Id, CourseDTO course); //EditCourse
 
 
 

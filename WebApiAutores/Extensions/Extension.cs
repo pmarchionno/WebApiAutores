@@ -69,6 +69,23 @@ namespace WebApiAutores.Extensions
         }
 
 
+        public static Course MapFromCourseForEditDto(this CourseDTO course)
+        {
+            if (course != null)
+            {
+                return new Course
+                {
+                    Name = course.Name,
+                    Description = course.Description,
+                    beginDate = course.beginDate,
+                    endDate = course.endDate,
+                   // isActive = 'y'
+                };
+            }
+
+            return null;
+        }
+
 
 
 
