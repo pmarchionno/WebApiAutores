@@ -1,9 +1,7 @@
-﻿namespace WebApiAutores.Entidades
+﻿namespace WebApiAutores.DTOS
 {
-    public class Class
+    public class ClassCreacionDTO
     {
-
-        public int Id { get; set; }
 
         public string Title { get; set; }
 
@@ -13,10 +11,7 @@
 
         public DateTime EndDate { get; set; }
 
-        //public string? videoUrl { get; set; } = string.Empty;
         public int CourseId { get; set; }
-
-        public Course Course { get; set; }
 
     }
 }

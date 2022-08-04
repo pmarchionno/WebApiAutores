@@ -1,6 +1,14 @@
+using Microsoft.AspNetCore.Http.Features;
 using WebApiAutores;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<FormOptions>(o =>
+{
+    o.ValueLengthLimit = int.MaxValue;
+    o.MultipartBodyLengthLimit = int.MaxValue;
+    o.MemoryBufferThreshold = int.MaxValue;
+});
 
 var startup = new Startup(builder.Configuration);
 

@@ -18,6 +18,8 @@ namespace WebApiAutores.Entidades
 
         public Char isActive { get; set; }
 
+        public string? ImgPath { get; set; }
+
         public List<Assistance> Assistance { get; set; }
 
         public List<Class> Classes { get; set; }

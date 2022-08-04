@@ -187,3 +187,5 @@ I:\COSAS DESCARGAS\Devlights\aplicacion bootcamp\WebApiAutores\WebApiAutores\obj
 I:\COSAS DESCARGAS\Devlights\aplicacion bootcamp\WebApiAutores\WebApiAutores\obj\Debug\net6.0\WebApiAutores.pdb
 I:\COSAS DESCARGAS\Devlights\aplicacion bootcamp\WebApiAutores\WebApiAutores\obj\Debug\net6.0\WebApiAutores.genruntimeconfig.cache
 I:\COSAS DESCARGAS\Devlights\aplicacion bootcamp\WebApiAutores\WebApiAutores\obj\Debug\net6.0\ref\WebApiAutores.dll
+I:\COSAS DESCARGAS\Devlights\aplicacion bootcamp\WebApiAutores\WebApiAutores\bin\Debug\net6.0\AutoMapper.dll
+I:\COSAS DESCARGAS\Devlights\aplicacion bootcamp\WebApiAutores\WebApiAutores\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

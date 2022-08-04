@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -27,9 +28,16 @@ namespace WebApiAutores
             services.AddScoped<ItokenService, TokenService>();
             services.AddTransient<UserRepository>();
             services.AddTransient<ICourseRepository, CourseRepository>();
+            services.AddTransient<IClassRepository, ClassRepository>();
+
+
+
 
             services.AddTransient<UserService>();
             services.AddTransient<ICourseService , CourseService>();
+            services.AddTransient<IClassService, ClassService>();
+
+
 
             services.AddControllers().AddJsonOptions(x => 
             x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
@@ -41,6 +49,7 @@ namespace WebApiAutores
            
            
             //services.AddTransient<IUserService, UserService>();
+           
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
@@ -55,6 +64,8 @@ namespace WebApiAutores
                 };
                 
             });
+
+            services.AddAutoMapper(typeof(Startup));
             /*
             var str = ConfigurationHandler.GetSection<string>(StringConstants.AppSettingsKeys.CORSWhitelistedURL);
             if (!string.IsNullOrEmpty(str))
@@ -82,7 +93,15 @@ namespace WebApiAutores
             }
 
             //app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
+           // app.UseCors("CorsPolicy");
 
+            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
+                RequestPath = new PathString("/Resources")
+            });
             app.UseRouting();
             //app.UseCors();
             app.UseAuthorization();
