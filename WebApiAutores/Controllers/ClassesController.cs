@@ -89,7 +89,7 @@ namespace WebApiAutores.Controllers
         }
 
 
-        [HttpGet("{Search}")]
+            [HttpGet("{Search}")]
         public async Task<ActionResult<IEnumerable<ClassDTO>>> GetClassesByTitle(string Title)
         {
             try
@@ -147,8 +147,38 @@ namespace WebApiAutores.Controllers
             return NoContent();
         }
 
+        [HttpGet("{Id:int}/course")]
+        public async Task<ActionResult<IEnumerable<ClassDTO>>> GetClassesByCourse(int Id)
+        {
+
+            try
+            {
+
+                var classesOfCourse = await _classService.GetClassesByCourse(Id);
+
+                if (classesOfCourse == null)
+                {
+                    return NotFound();
+
+                   
+                }
+
+                return Ok(classesOfCourse);
 
 
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                   " Error retrieving data from dtabase ");
+
+
+            }
+
+
+
+        }
 
 
     }  

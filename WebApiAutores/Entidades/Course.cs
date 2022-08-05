@@ -24,15 +24,9 @@ namespace WebApiAutores.Entidades
 
         public List<Class> Classes { get; set; }
 
-
-
-
-
-
-
-
-
-
-
+        internal bool Any()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

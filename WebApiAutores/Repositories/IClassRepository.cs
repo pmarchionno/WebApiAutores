@@ -14,5 +14,7 @@ namespace WebApiAutores.Repositories
 
         public Class EditClass(Class classes);
 
+        public Task<IEnumerable<Class>> GetClassesByCourse(int Id);
+
     }
 }

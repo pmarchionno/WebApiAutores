@@ -13,7 +13,7 @@ namespace WebApiAutores.Extensions
             CreateMap<ClassCreacionDTO, Class>();
 
             CreateMap<Class , ClassDTO>();
-            //CreateMap<Class, ClassDTO>();
+            CreateMap<Class, ClassCreacionDTO>();
 
 
 

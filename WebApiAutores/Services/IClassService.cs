@@ -13,6 +13,8 @@ namespace WebApiAutores.Services
 
         public ClassDTO GetClassById(int Id);
 
+        public Task<IEnumerable<ClassCreacionDTO>> GetClassesByCourse(int Id);
+
 
 
         public Class EditClass(int Id, ClassDTO classes); //EditCourse

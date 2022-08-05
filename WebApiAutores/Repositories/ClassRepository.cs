@@ -66,7 +66,34 @@ namespace WebApiAutores.Repositories
         }
 
 
+        public async Task<IEnumerable<Class>> GetClassesByCourse(int Id)
+        {
+            try
+            {
+                var ExistsCourse = await _context.Courses.AnyAsync(c => c.Id == Id);
+                if (!ExistsCourse)
+                {
+                    return null;
 
-      
+                }
+
+                //IQueryable<Class> classes = _context.Classes;
+
+                var classesOfCourse = await _context.Classes.Where(c => c.CourseId == Id).ToListAsync();
+
+                return classesOfCourse;
+
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+
+
+
     }
 }

@@ -11,11 +11,13 @@ namespace WebApiAutores.Services
     {
 
         private readonly IClassRepository _classRepository;
+        private readonly ICourseRepository _courseRepository;
         private readonly IMapper _mapper;
-        public ClassService(IClassRepository classRepository, IMapper mapper)
+        public ClassService(IClassRepository classRepository,ICourseRepository courseRepository, IMapper mapper)
         {
+            _courseRepository = courseRepository;
             _classRepository = classRepository;
-            this._mapper = mapper;  
+            this._mapper = mapper;
         }
         public void AddClass(ClassCreacionDTO classes)
         {
@@ -49,59 +51,59 @@ namespace WebApiAutores.Services
 
         }
 
-    
 
-        public async  Task<IEnumerable<ClassDTO>> GetAllClasses()
+
+        public async Task<IEnumerable<ClassDTO>> GetAllClasses()
         {
-            
-           
-                var classes = await _classRepository.GetAllClasses();
-
-                var classesToreturn = _mapper.Map<IEnumerable<ClassDTO>>(classes);
-                return classesToreturn; 
-                
 
 
-                
+            var classes = await _classRepository.GetAllClasses();
 
-                //return courses;
-                
-               
-                //var petsToReturn = _mapper.Map<IEnumerable<PetDTO>>(pets);
-                //return petsToReturn;
-            
+            var classesToreturn = _mapper.Map<IEnumerable<ClassDTO>>(classes);
+            return classesToreturn;
+
+
+
+
+
+            //return courses;
+
+
+            //var petsToReturn = _mapper.Map<IEnumerable<PetDTO>>(pets);
+            //return petsToReturn;
+
         }
 
         public ClassDTO GetClassById(int Id)
         {
 
 
-            
-                try
+
+            try
+            {
+                var classe = _classRepository.GetClassById(Id);
+
+                if (classe == null)
                 {
-                    var classe = _classRepository.GetClassById(Id);
-
-                    if (classe == null)
-                    {
-                        return null;
-                    }
-
-                     var classeToReturn = _mapper.Map<ClassDTO>(classe); 
-                      return classeToReturn;
-
-                    //return classe.MapToCourseForListDto();
-
-
-
-                }
-                catch (Exception ex)
-                {
-
-                    throw ex;
-
+                    return null;
                 }
 
-            
+                var classeToReturn = _mapper.Map<ClassDTO>(classe);
+                return classeToReturn;
+
+                //return classe.MapToCourseForListDto();
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+
+            }
+
+
 
 
 
@@ -170,7 +172,50 @@ namespace WebApiAutores.Services
 
         }
 
+        public async Task<IEnumerable<ClassCreacionDTO>> GetClassesByCourse(int Id)
+        {
+            try
+            {
+
+                //var existsCourse =  _courseRepository.GetCourseById(Id);
+
+                //if (existsCourse.Any())
+                //{
+
+                    var classesOfCourse = await _classRepository.GetClassesByCourse(Id);
+
+                    if(classesOfCourse == null)
+                    {
+
+                        return null;
 
 
+                     }
+
+
+
+                    var classesOfCourseToR = _mapper.Map<IEnumerable<ClassCreacionDTO>>(classesOfCourse);
+                    return classesOfCourseToR;
+
+
+               // }
+
+          
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+
+            }
+
+
+
+        }
     }
 }
